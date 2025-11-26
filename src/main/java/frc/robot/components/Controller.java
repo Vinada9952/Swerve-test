@@ -42,4 +42,20 @@ public class Controller {
     public StickPosition getRightStickPosition() {
         return new StickPosition(hardwareController.getRightX(), hardwareController.getRightY());
     }
+
+    public boolean getAButton() {
+        return hardwareController.getAButtonPressed();
+    }
+
+    public boolean getBButton() {
+        return hardwareController.getBButtonPressed();
+    }
+
+    public boolean getXButton() {
+        return hardwareController.getXButtonPressed();
+    }
+
+    public boolean getYButton() {
+        return hardwareController.getYButtonPressed();
+    }
 }

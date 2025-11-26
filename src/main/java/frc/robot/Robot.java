@@ -63,7 +63,9 @@ public class Robot extends TimesliceRobot {
    * SmartDashboard integrated updating.
    */
   @Override
-  public void robotPeriodic() {}
+  public void robotPeriodic() {
+    motor.updateData();
+  }
 
   /**
    * This autonomous (along with the chooser code above) shows how to select between different
@@ -103,9 +105,19 @@ public class Robot extends TimesliceRobot {
   /** This function is called periodically during operator control. */
   @Override
   public void teleopPeriodic() {
-    StickPosition joystick_position = controller.getLeftStickPosition();
-    double y = joystick_position.y();
-    motor.setMotor(y);
+    motor.poll();
+    if( controller.getAButton() ) {
+      motor.goToPosition( 25 );
+    }
+    else if( controller.getBButton() ) {
+      motor.goToPosition( -25 );
+    }
+    else if( controller.getXButton() ) {
+      motor.goToPosition( 1 );
+    }
+    else if( controller.getYButton() ) {
+      motor.goToPosition( 0 );
+    }
   }
 
   /** This function is called once when the robot is disabled. */
