@@ -15,7 +15,7 @@ public class Motor {
     private SparkMax motor;
     private RelativeEncoder encoder;
 
-    PIDController pid = new PIDController(1.45, 1.23, 0.13);
+    PIDController pid = new PIDController(1.2, 1.2, 0.8);
 
     private double objective_position = 0;
 
@@ -40,7 +40,7 @@ public class Motor {
     }
 
     public void setMotor( double speed ) {
-        motor.set(speed);
+        motor.set(speed); // TODO: put speed with encoder velocity, not battery voltage
     }
 
     public void goToPosition( double position ) {
