@@ -15,9 +15,12 @@ public class Motor {
     private SparkMax motor;
     private RelativeEncoder encoder;
 
-    PIDController pid = new PIDController(1.2, 1.2, 0.8);
+    private double distance_toggle = 0; // set distance where speed changes
 
     private double objective_position = 0;
+
+    private double speed = 1;
+    private double slow_speed = 0.2; // put reasonable slow speed here
 
 
     public Motor()
@@ -31,12 +34,16 @@ public class Motor {
         SmartDashboard.putNumber("Encoder Position", encoder.getPosition());
         SmartDashboard.putNumber("Encoder Velocity", encoder.getVelocity());
         SmartDashboard.putNumber("Objective Position", objective_position);
-        SmartDashboard.putNumber("Speed", pid.calculate(current_position, objective_position));
     }
 
-    public void poll() {
-        double current_position = encoder.getPosition();
-        setMotor( pid.calculate(current_position, objective_position) );
+    public void poll() {;
+        double distance_position = Math.abs(objective_position - encoder.getPosition());
+        double direction = Math.signum(objective_position - encoder.getPosition());
+        if (distance_position < distance_toggle) {
+            setMotor( slow_speed * direction );
+        } else {
+            setMotor( speed * direction );
+        }
     }
 
     public void setMotor( double speed ) {
