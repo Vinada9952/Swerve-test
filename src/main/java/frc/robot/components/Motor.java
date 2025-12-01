@@ -17,7 +17,7 @@ public class Motor {
 
     private double objective_speed = 0;
     private double current_power = 0;
-    private double speed_modifier = 0.01; // set to reasonable value
+    private double speed_modifier = 0.5; // set to reasonable value
 
     public Motor()
     {
@@ -26,7 +26,6 @@ public class Motor {
     }
 
     public void updateData() {
-        double current_position = encoder.getPosition();
         SmartDashboard.putNumber("Encoder Position", encoder.getPosition());
         SmartDashboard.putNumber("Encoder Velocity", encoder.getVelocity());
         SmartDashboard.putNumber("Current Power", current_power);
