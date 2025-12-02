@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.components.Motor;
 import frc.robot.data.StickPosition;
 import frc.robot.components.Controller;
+import java.lang.Math;
 
 /**
  * The methods in this class are called automatically corresponding to each mode, as described in
@@ -107,12 +108,12 @@ public class Robot extends TimesliceRobot {
   @Override
   public void teleopPeriodic() {
     motor.poll();
+    controller.poll();
+    double modifier = controller.getRightStickPosition().x();
     if( controller.getAButton() ) {
-      motor.toggleTarget();
+      modifier = 0;
     }
-    else if( controller.getBButton() ) {
-      motor.incrementDivider();
-    }
+    motor.modifyPosition(modifier*25);
   }
 
   /** This function is called once when the robot is disabled. */

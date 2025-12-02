@@ -19,7 +19,7 @@ public class Motor {
     private double speed = 0;
     private double divider = 10;
 
-    private double min_speed = 0.1;
+    private double min_speed = 0.02;
     private double max_speed = 1;
     // Put correct values here
     // min_speed should be the minimum speed that the motor can run at to actually move the mechanism
@@ -34,7 +34,7 @@ public class Motor {
     public void updateData() {
         double current_position = encoder.getPosition();
         speed = Math.abs((objective_position-current_position)/divider);
-        speed = Math.min( Math.max(speed, max_speed), min_speed );
+        // speed = Math.min( Math.max(speed, max_speed), min_speed );
         SmartDashboard.putNumber("Encoder Position", encoder.getPosition());
         SmartDashboard.putNumber("Encoder Velocity", encoder.getVelocity());
         SmartDashboard.putNumber("Objective Position", objective_position);
@@ -60,11 +60,7 @@ public class Motor {
         objective_position = position;
     }
 
-    public void incrementDivider() {
-        divider++;
-    }
-
-    public void toggleTarget() {
-        objective_position = Math.abs( 25-objective_position );
+    public void modifyPosition( double position ) {
+        objective_position += position;
     }
 }

@@ -19,7 +19,10 @@ public class Controller {
     /**
      * Update user desired states from non analog inputs based on state changes since last check
      */
-    public void poll() {}
+    public void poll() {
+        SmartDashboard.putNumber("joystick x", getRightStickPosition().x());
+        SmartDashboard.putNumber("joystick y", getRightStickPosition().y());
+    }
 
     /**
      * Used for single stick piloting
@@ -44,7 +47,7 @@ public class Controller {
     }
 
     public boolean getAButton() {
-        return hardwareController.getAButtonPressed();
+        return hardwareController.getAButton();
     }
 
     public boolean getBButton() {
