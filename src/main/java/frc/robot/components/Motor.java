@@ -20,7 +20,7 @@ public class Motor {
     private double objective_position = 0;
 
     private double speed = 1;
-    private double slow_speed = 0.2; // put reasonable slow speed here
+    private double slow_speed = 0.02; // put reasonable slow speed here
 
 
     public Motor()
