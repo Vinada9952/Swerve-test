@@ -19,8 +19,8 @@ public class Motor {
     private double speed = 0;
     private double divider = 10;
 
-    private double min_speed = 0.02;
-    private double max_speed = 1;
+    // private double min_speed = 0.02;
+    // private double max_speed = 1;
     // Put correct values here
     // min_speed should be the minimum speed that the motor can run at to actually move the mechanism
 
